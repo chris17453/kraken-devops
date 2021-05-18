@@ -1,46 +1,80 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: litecoin
-  labels:
-    app: litecoind
-spec:
-  ports:
-  - port: 80
-    name: web
-  clusterIP: None
-  selector:
-    app: nginx
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: web
+  name: litecoin-18-1
+  labels:
+    app: litecoin-18-1
 spec:
-  serviceName: "nginx"
-  replicas: 2
+  serviceName: litecoin-18-1
+  replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: litecoin-18-1
   template:
     metadata:
       labels:
-        app: nginx
+        app: litecoin-18-1
     spec:
+      terminationGracePeriodSeconds: 0
+        # defining external mapping to container ports(port)
       containers:
-      - name: nginx
-        image: k8s.gcr.io/nginx-slim:0.8
+      - name: litecoin-18-1
+        imagePullPolicy: Never
+        image: chris17453/litecoin-litecoin-0.18.1:latest
+        # defining internal container ports (container ports)
         ports:
-        - containerPort: 80
-          name: web
+          - containerPort: 9332   
+            name: api
+          - containerPort: 9333
+            name: p2p
+        # resource limits
+        resources:
+          # max limits for cpu/mem
+          limits:
+            cpu: "500m"
+            memory: 4Gi
+          # what I want for  cpu/mem
+          requests:
+            cpu: "500m"
+            memory: 1Gi
+        # setup volume mount for claim
         volumeMounts:
-        - name: www
-          mountPath: /usr/share/nginx/html
+        - name: litecoin-data
+          mountPath: /home/litecoin/.litecoin
+  
   volumeClaimTemplates:
   - metadata:
-      name: www
+      name: litecoin-data
+      # use single tenant / node write access 
     spec:
       accessModes: [ "ReadWriteOnce" ]
+      storageClassName: fast
       resources:
         requests:
           storage: 1Gi
+# use local host node write access 
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: fast
+provisioner: k8s.io/minikube-hostpath
+parameters:
+  type: pd-ssd          
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: litecoin-runner
+  labels:
+    app: litecoin-runner
+spec:
+  ports:
+  - port: 9332
+    name: api
+  - port: 9338
+    name: p2p
+  clusterIP: None
+  selector:
+    app: litecoin-18-1

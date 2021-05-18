@@ -1,5 +1,5 @@
-#FROM amazonlinux:2
-FROM centos:7
+FROM amazonlinux:2
+#FROM centos:7
 
 LABEL maintainer.0="Charles Waktins (@chris17453)"
 
@@ -67,12 +67,8 @@ RUN yum remove tar gzip shadow-utils -y | true
 # Exposing the internal container litecoind ports as found in repo -> https://github.com/uphold/docker-litecoin-core
 # Mainnet JSON-RPC/REST   9332   
 # Mainnet P2P             9333   
-# Testnet JSON-RPC        19332  
-# Testnet P2P             19333  
-# Regtest JSON-RPC/REST   19444  
-# Regtest P2P             19332  
 
-EXPOSE 9332 9333 19332 19333 19444
+EXPOSE 9332 9333
 
 ENTRYPOINT [ "/opt/entrypoint.sh"]
 
