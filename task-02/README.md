@@ -1,3 +1,10 @@
+---
+layout: default
+title: Buttons
+parent: Test
+nav_order: 2
+has_children: true
+---
 # Kraken DevOps Test
 [Back to root README.md](/README.md)
 
