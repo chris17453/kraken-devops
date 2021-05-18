@@ -9,10 +9,10 @@ The build should be security conscious (and ideally pass a container image secur
 
 ## Recording
 Amazon Linux 2 Successfull build and scan
-![AL2 Success](https://raw.githubusercontent.com/chris17453/kraken/master/media/task-01-al2.gif)
+![AL2 Success](https://raw.githubusercontent.com/chris17453/kraken-devops/master/media/task-01-al2.gif)
 
 Centos 7 successfull build and scan fail
-![Centos 7 Fail](https://raw.githubusercontent.com/chris17453/kraken/master/media/task-01-centos.gif)
+![Centos 7 Fail](https://raw.githubusercontent.com/chris17453/kraken-devops/master/media/task-01-centos.gif)
 
 
 - recoded with asciinema
