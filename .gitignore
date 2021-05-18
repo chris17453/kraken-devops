@@ -9,3 +9,4 @@ $XDG_CACHE_HOME
 .terraform
 terraform.tfstate
 terraform.tfstate.backup
+*.hcl
