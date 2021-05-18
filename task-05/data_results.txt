@@ -1,0 +1,4 @@
+Hi I'm Chris 'Charles Watkins'
+# Hi I'm {casual name} '{full name}'   //This line should never be replaced
+This is an example of using `sed` for textual replacment
+This is a 4 line file.

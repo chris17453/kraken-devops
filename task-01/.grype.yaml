@@ -1,0 +1,37 @@
+# enable/disable checking for application updates on startup
+check-for-app-update: true
+
+# same as --fail-on ; upon scanning, if a severity is found at or above the given severity then the return code will be 1
+# default is unset which will skip this validation (options: negligible, low, medium, high, critical)
+fail-on-severity: 'medium'
+
+# same as -o ; the output format of the vulnerability report (options: table, json, cyclonedx)
+output: "table"
+
+# same as -s ; the search space to look for packages (options: all-layers, squashed)
+scope: "squashed"
+
+# same as -q ; suppress all output (except for the vulnerability list)
+quiet: false
+
+db:
+  # check for database updates on execution
+  auto-update: true
+
+  # location to write the vulnerability database cache
+  cache-dir: "$XDG_CACHE_HOME/grype/db"
+
+  # URL of the vulnerability database
+  update-url: "https://toolbox-data.anchore.io/grype/databases/listing.json"
+
+
+
+log:
+  # location to write the log file (default is not to have a log file)
+  file: ""
+
+  # the log level; note: detailed logging suppress the ETUI
+  level: "error"
+
+  # use structured logging
+  structured: false
