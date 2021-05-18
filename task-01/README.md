@@ -16,7 +16,7 @@ Centos 7 successfull build and scan fail
 
 
 - recoded with asciinema
-- converted to gif with ttygif 
+- converted to gif with ttygif  -> (https://github.com/chris17453/ttygif) I wrote this terminal emulator/converter in cythoin
 - It should somehow verify the checksum ofthe downloaded release (there's no need to build the project)
   - done with makefile verifys with gpg key then sha256 sum
 - run as a normal user
