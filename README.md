@@ -1,9 +1,3 @@
----
-layout: default
-title: Test
-nav_order: 2
-has_children: true
----
 # Kraken DevOps Test
 
 ## General rule
