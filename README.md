@@ -1,5 +1,7 @@
 # Kraken DevOps Test
 
+This test was given to me as part of an interview. I didn't get the job, but why waste all this coding goodness?
+
 ## General rule
 You can copy, search, google, duckduckgo, stackoverflow, github or otherwise source your
 answers without losing marks, but:
